@@ -123,3 +123,27 @@ node ace migration:run
 node ace make:controller Articles
 ```
 2. Connecting controller with route so passed all the DB logic into the controller from routes.ts
+
+#### Form handling for POST action 
+
+1. Create a view template first
+```
+node ace make:view news/create
+```
+2. Wrote `create` method for it in the controller.
+3. Made a get route ton render post form. 
+4. Install `shield` package for csrf to work
+```
+npm i @adonisjs/shield
+```
+Configure it 
+```
+node ace configure @adonisjs/shield
+```
+Pasted the following in `Server.middleware.register`
+```
+  () => import('@ioc:Adonis/Addons/Shield')
+```
+5. Validating the form with [CSRF Token](https://docs.adonisjs.com/guides/security/web-security#csrf-protection) 
+
+#### Store data in DB via POST form

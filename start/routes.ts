@@ -1,7 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 // import Database from '@ioc:Adonis/Lucid/Database'
-import ArticlesController from 'App/Controllers/Http/ArticlesController';
 
+// ----------------root route
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
@@ -28,14 +28,22 @@ Route.get("/news", "ArticlesController.view").as("news_view");
 
 // Route.on("/news").render("news.view").as("news_view");
 
-Route.post("/news", ( {response}) => {
-// Route.post("/news", ( {request, response}) => {
+// ------------------
+
+Route.get("/news/create", "ArticlesController.create").as("news_create");
+
+// this going to be accessed by form
+// Route.post("/news", ( {view}) => {
+// Route.post("/news", ( {response}) => {
+Route.post("/news", ( {request, response}) => {
   // return "I am post route"
   // const { email, password } = request.body();
   // return { email, password }
 
-  return response.redirect("/news");
-}).as("news_create")
+  // return response.redirect("/news");
+  // return view.render("news.create")
+  return request.body();
+}).as("news_post")
 
 Route.patch("/news/:id", ({ params }) => {
   console.log(params);
