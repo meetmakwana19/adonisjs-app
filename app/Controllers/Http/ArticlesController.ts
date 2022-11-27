@@ -10,7 +10,7 @@ export default class ArticlesController {
         .select('*')
         // return articles
       
-        return view.render('news.view', {articles}) //passing 2nd arguement of state as the database table name in {} 
+        return view.render('news/view', {articles}) //passing 2nd arguement of state as the database table name in {} 
       
     }
 

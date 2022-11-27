@@ -162,3 +162,9 @@ Pasted the following in `Server.middleware.register`
 node ace make:validator CreateArticle
 ```
 5. Putting schema structure in this validator
+
+#### View templates 
+
+1. Creating a partial for [navbar](resources/views/partials/navbar.edge) and also footer.
+2. Creating a layouts dir.
+3. Removed all html from news dir and created one main.edge layout 
