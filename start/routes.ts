@@ -33,17 +33,18 @@ Route.get("/news", "ArticlesController.view").as("news_view");
 Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 // this going to be accessed by form
+Route.post("/news", "ArticlesController.post").as("news_post");
 // Route.post("/news", ( {view}) => {
 // Route.post("/news", ( {response}) => {
-Route.post("/news", ( {request, response}) => {
+// Route.post("/news", ( {request, response}) => {
   // return "I am post route"
   // const { email, password } = request.body();
   // return { email, password }
 
   // return response.redirect("/news");
   // return view.render("news.create")
-  return request.body();
-}).as("news_post")
+//   return request.body();
+// }).as("news_post")
 
 Route.patch("/news/:id", ({ params }) => {
   console.log(params);

@@ -15,4 +15,18 @@ export default class ArticlesController {
     public create({ view }){
         return view.render("news/create")
     }
+
+    public async post({ request}){
+        // destructuring the form contents 
+        const { title, image, content } = request.body();
+        // return request.body();
+        
+        await Database.table("articles").insert({
+            title: title,
+            image: image,
+            content: content,
+            slug: "yoyo1",
+        })
+        // return response.redirect().back()
+    }
 }

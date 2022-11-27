@@ -147,3 +147,7 @@ Pasted the following in `Server.middleware.register`
 5. Validating the form with [CSRF Token](https://docs.adonisjs.com/guides/security/web-security#csrf-protection) 
 
 #### Store data in DB via POST form
+
+1. Creating post method in the ArticlesController.
+2. Making POST route one liner in the routes.ts
+3. Wrote insert query in the method reading (this)[https://docs.adonisjs.com/reference/database/insert-query-builder]
