@@ -151,3 +151,14 @@ Pasted the following in `Server.middleware.register`
 1. Creating post method in the ArticlesController.
 2. Making POST route one liner in the routes.ts
 3. Wrote insert query in the method reading (this)[https://docs.adonisjs.com/reference/database/insert-query-builder]
+
+#### Request validation 
+
+1. Added vallidator for form POST reading [this](https://docs.adonisjs.com/guides/validator/introduction)
+2. For Server rendered app docs showed to use flash msgs in the view template
+3. Riight now controller is messed up with all the works of validations of schema, inserting in DB, etc
+4. So create a validator for this purpose
+```
+node ace make:validator CreateArticle
+```
+5. Putting schema structure in this validator

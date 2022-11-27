@@ -1,6 +1,8 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 // import View from '@ioc:Adonis/Core/View'
 import Database from '@ioc:Adonis/Lucid/Database'
+// import { schema } from '@ioc:Adonis/Core/Validator'
+import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
 export default class ArticlesController {
     public async view({ view }) {
@@ -16,17 +18,22 @@ export default class ArticlesController {
         return view.render("news/create")
     }
 
-    public async post({ request}){
+    public async post({ response, request}){
+
         // destructuring the form contents 
-        const { title, image, content } = request.body();
+        // const { title, image, content } = request.body();
+        const payload = await request.validate(CreateArticleValidator );
         // return request.body();
         
         await Database.table("articles").insert({
-            title: title,
-            image: image,
-            content: content,
-            slug: "yoyo1",
+            // title: title,
+            // image: image,
+            // content: content,
+            // slug: "yoyo1",
+            ...payload,
+            slug: payload.title
         })
-        // return response.redirect().back()
+        
+        return response.redirect().back()
     }
 }
