@@ -44,4 +44,9 @@ export default class ArticlesController {
         return response.redirect().back();
         // return "ddfef"
     }
+    
+    public async destroy({ params, response }) {
+        await Database.from("articles").where("slug", params.slug).delete();
+        return response.redirect().back();
+      }
 }
