@@ -36,4 +36,12 @@ export default class ArticlesController {
         
         return response.redirect().back()
     }
+
+    public async edit({ view, params }){
+        const { slug } = params;
+        const article = await Database.from("articles").where("slug", slug).first();
+        // return article;
+        return view.render("news/edit", { article })
+    }
+
 }

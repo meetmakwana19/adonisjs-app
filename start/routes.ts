@@ -1,4 +1,5 @@
 import Route from '@ioc:Adonis/Core/Route'
+import ArticlesController from 'App/Controllers/Http/ArticlesController';
 // import Database from '@ioc:Adonis/Lucid/Database'
 
 // ----------------root route
@@ -46,15 +47,16 @@ Route.post("/news", "ArticlesController.post").as("news_post");
 //   return request.body();
 // }).as("news_post")
 
-Route.patch("/news/:id", ({ params }) => {
-  console.log(params);
-  // return "I am patch and params is " + {params}
-  return {params}
-})
-.where('id', {
-  match: /^[0-9]+$/,
-  cast: (id) => Number(id)
-}).as("news_patch") //for id validation
+Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
+Route.patch("news/:slug", "ArticlesController.update").as("news_patch")
+// Route.patch("/news/:id", ({ params }) => {
+//   console.log(params);
+//   // return "I am patch and params is " + {params}
+//   return {params}
+// }).where('id', {
+//   match: /^[0-9]+$/,
+//   cast: (id) => Number(id)
+// }).as("news_patch") //for id validation
 
 Route.delete("/news/:id", ({ params }) => {
   console.log(params);

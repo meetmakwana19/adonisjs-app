@@ -168,3 +168,14 @@ node ace make:validator CreateArticle
 1. Creating a partial for [navbar](resources/views/partials/navbar.edge) and also footer.
 2. Creating a layouts dir.
 3. Removed all html from news dir and created one main.edge layout 
+
+#### Edit form 
+
+1. Created get route for edit form in the routes.ts
+2. Added a button for it by also passing slug as id in the view.edge
+3. Wrote edit method in the ArticlesController
+4. Created a view for edit 
+```
+node ace make:view news/edit
+```
+5. Copied code from create view into edit view and changed few things like heading ad form action url 
