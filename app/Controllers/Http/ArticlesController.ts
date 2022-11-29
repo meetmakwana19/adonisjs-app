@@ -1,17 +1,13 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-// import View from '@ioc:Adonis/Core/View'
 import Database from '@ioc:Adonis/Lucid/Database'
-// import { schema } from '@ioc:Adonis/Core/Validator'
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
 export default class ArticlesController {
+
     public async view({ view }) {
-        const articles = await Database.from('articles') // 👈 gives an instance of select query builder
-        .select('*')
+        const articles = await Database.from('articles').select("*"); 
+
         // return articles
-      
-        return view.render('news/view', {articles}) //passing 2nd arguement of state as the database table name in {} 
-      
+        return view.render('news/view', { articles }); //passing 2nd arguement of state as the database table name in {} 
     }
 
     public create({ view }){
@@ -19,7 +15,6 @@ export default class ArticlesController {
     }
 
     public async post({ response, request}){
-
         // destructuring the form contents 
         // const { title, image, content } = request.body();
         const payload = await request.validate(CreateArticleValidator );
@@ -33,7 +28,6 @@ export default class ArticlesController {
             ...payload,
             slug: payload.title
         })
-        
         return response.redirect().back()
     }
 
@@ -44,4 +38,10 @@ export default class ArticlesController {
         return view.render("news/edit", { article })
     }
 
+    public async update ({request, response, params}){
+        const payload = await request.validate(CreateArticleValidator );
+        await Database.from("articles").where("slug", params.slug).update(payload)
+        return response.redirect().back();
+        // return "ddfef"
+    }
 }

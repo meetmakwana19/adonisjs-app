@@ -179,3 +179,15 @@ node ace make:validator CreateArticle
 node ace make:view news/edit
 ```
 5. Copied code from create view into edit view and changed few things like heading ad form action url 
+
+#### Method spoofing 
+
+1. Standard HTML forms cannot make use of all the HTTP verbs beyond GET and POST. It means you cannot create a form with the method PUT.
+2. However, AdonisJS allows you to spoof the HTTP method using the _method query string. In the following example, the request will be routed to the route listening for the PUT request..... [docs](https://docs.adonisjs.com/cookbooks/validating-server-rendered-forms#form-method-spoofing)
+3. So made a hidden field for this in the edit form.
+```
+<input type="hidden" name="_method" value ="PATCH">
+```
+4. Form method spoofing only works:
+   1. When the value of http.allowMethodSpoofing is set to true inside the config/app.ts file
+   2. And the original request method is POST.

@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="container">
-    <h1>Update Article</h1>
-
     {{--  {{article.slug}}  --}}
-    <form class="w-50 m-5", action="{{route("news_patch", [article.slug])}}" method="PATCH">
+    <form class="w-50 m-5", action="{{route("news_patch", [article.slug])}}?_method=PATCH" method="POST">
+        {{--  telling adnois that this is a patch request using ?_method spoofing  --}}
         {{ csrfField() }}
+        <h1>Update Article</h1>
         <div class="mb-3">
             <label class="form-label">Edit title</label>
       <input class="form-control" type="text" name="title" value="{{article.title}}">   
