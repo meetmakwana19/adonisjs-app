@@ -1,11 +1,21 @@
 import Route from '@ioc:Adonis/Core/Route'
-import ArticlesController from 'App/Controllers/Http/ArticlesController';
-// import Database from '@ioc:Adonis/Lucid/Database'
 
 // ----------------root route
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+// resourceful routes
+// Route.resource("news", "ArticlesController").apiOnly();
+Route.resource("news", "ArticlesController").paramFor("news", "slug").as("news");
+
+// // ----------One liner routes
+// Route.get("/news", "ArticlesController.view").as("news_view");
+// Route.get("/news/create", "ArticlesController.create").as("news_create");
+// Route.post("/news", "ArticlesController.post").as("news_post");
+// Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
+// Route.patch("news/:slug", "ArticlesController.update").as("news_patch")
+// Route.delete("/news/:slug", "ArticlesController.destroy").as("news_delete");
 
 // Route.get('/news', async (ctx) => {
 // // Route.get('/news', async ({ view }) => {
@@ -25,16 +35,13 @@ Route.get('/', async ({ view }) => {
 // }).as("news_view");
 
 // -----One line way : "ControllerName.method_name'
-Route.get("/news", "ArticlesController.view").as("news_view");
 
 // Route.on("/news").render("news.view").as("news_view");
 
 // ------------------
 
-Route.get("/news/create", "ArticlesController.create").as("news_create");
 
 // this going to be accessed by form
-Route.post("/news", "ArticlesController.post").as("news_post");
 // Route.post("/news", ( {view}) => {
 // Route.post("/news", ( {response}) => {
 // Route.post("/news", ( {request, response}) => {
@@ -47,8 +54,6 @@ Route.post("/news", "ArticlesController.post").as("news_post");
 //   return request.body();
 // }).as("news_post")
 
-Route.get("/news/:slug/edit", "ArticlesController.edit").as("news_edit");
-Route.patch("news/:slug", "ArticlesController.update").as("news_patch")
 // Route.patch("/news/:id", ({ params }) => {
   //   console.log(params);
   //   // return "I am patch and params is " + {params}
@@ -58,8 +63,6 @@ Route.patch("news/:slug", "ArticlesController.update").as("news_patch")
 //   cast: (id) => Number(id)
 // }).as("news_patch") //for id validation
 
-
-Route.delete("/news/:slug", "ArticlesController.destroy").as("news_delete");
 // Route.delete("/news/:id", ({ params }) => {
 //   console.log(params);
 //   return {params}

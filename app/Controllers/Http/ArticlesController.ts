@@ -3,7 +3,7 @@ import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
 export default class ArticlesController {
 
-    public async view({ view }) {
+    public async index({ view }) {
         const articles = await Database.from('articles').select("*"); 
 
         // return articles
@@ -14,7 +14,7 @@ export default class ArticlesController {
         return view.render("news/create")
     }
 
-    public async post({ response, request}){
+    public async store({ response, request}){
         // destructuring the form contents 
         // const { title, image, content } = request.body();
         const payload = await request.validate(CreateArticleValidator );
@@ -26,7 +26,7 @@ export default class ArticlesController {
             // content: content,
             // slug: "yoyo1",
             ...payload,
-            slug: payload.title
+            slug: payload.title.replace(" ", "_") + +new Date()
         })
         return response.redirect().back()
     }

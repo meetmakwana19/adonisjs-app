@@ -10,7 +10,7 @@
   </div>
 </section>
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       @each(article in articles)
@@ -30,8 +30,8 @@
             <p>{{article.content}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <a href="{{route('news_edit',[article.slug])}}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <form action="{{route('news_delete',[article.slug])}}?_method=DELETE" method="post">
+                <a href="{{route('news.edit',[article.slug])}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <form action="{{route('news.destroy',[article.slug])}}?_method=DELETE" method="post">
                   {{ csrfField() }}
                   <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                 </form>

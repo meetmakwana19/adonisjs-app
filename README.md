@@ -191,3 +191,35 @@ node ace make:view news/edit
 4. Form method spoofing only works:
    1. When the value of http.allowMethodSpoofing is set to true inside the config/app.ts file
    2. And the original request method is POST.
+
+#### Resourceful routes 
+
+1. Added one for news in the routes.ts
+2. Whenever we need help for some command use something like `-h` flag
+Example :
+```
+node ace make:controller Test -h
+```
+O/P:
+```
+Make a new HTTP controller
+
+Usage: make:controller <name>
+
+Arguments
+  name                    Name of the controller class
+
+Flags
+  -r, --resource boolean  Add resourceful methods to the controller class
+  -e, --exact boolean     Create the controller with the exact name as provided
+```
+So can use `-r` flag too.
+3. API routes wont give us view routes 
+```
+Route.resource("news", "ArticlesController").apiOnly();
+```
+4. To change default params id 
+```
+Route.resource("news", "ArticlesController").paramFor("news", "slug").as("news");
+```
+5. dd
