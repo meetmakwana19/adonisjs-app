@@ -1,4 +1,3 @@
-import Database from '@ioc:Adonis/Lucid/Database'
 import Article from 'App/Models/Article';
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 

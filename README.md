@@ -240,3 +240,52 @@ node ace make:model Article
 1. Hooks are the actions that you can perform against a model instance during a pre-defined life cycle event. Using hooks, you can encapsulate specific actions within your models vs. writing them everywhere inside your codebase.
 2. And just write a hook in model file.
 3. Benefit of using model is also  that  it automatically adds the timestamps 
+
+#### Adonis authentication
+
+1. AdonisJS comes with a fully fledged authentication system to authenticate the users of your application using sessions, basic auth or API tokens.
+2. The support for authentication is added by the `@adonisjs/auth` package and it must be installed separately.
+```
+npm i @adonisjs/auth
+```
+```
+node ace configure @adonisjs/auth
+```
+O/p:
+```
+❯ Select provider for finding users · lucid
+❯ Select which guard you need for authentication (select using space) · web
+❯ Enter model name to be used for authentication · User
+❯ Create migration for the users table? (y/N) · true
+CREATE: app/Models/User.ts
+CREATE: database/migrations/1669823373825_users.ts
+CREATE: contracts/auth.ts
+CREATE: config/auth.ts
+CREATE: app/Middleware/Auth.ts
+CREATE: app/Middleware/SilentAuth.ts
+UPDATE: tsconfig.json { types += "@adonisjs/auth" }
+UPDATE: .adonisrc.json { providers += "@adonisjs/auth" }
+CREATE: ace-manifest.json file
+```
+3. Run the migration as the migration file was created.
+```
+node ace migration:run
+```
+4. Adonis concole 
+```
+node ace repl
+```
+```
+> import User from 'App/Models/User';
+{}
+> User.create("email":"meet@gmail.com", "password":"secretpassword")
+```
+Getting error on this so checked [hash.ts](config/hash.ts) and gpt to  know that need to install argon
+```
+npm install phc-argon2
+```
+5. Created new user 
+```
+await User.create({"email":"meet@gmail.com", "password":"secretpassword"})
+```
+6. d
