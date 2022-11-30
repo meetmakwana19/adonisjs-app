@@ -288,4 +288,8 @@ npm install phc-argon2
 ```
 await User.create({"email":"meet@gmail.com", "password":"secretpassword"})
 ```
-6. d
+
+#### User login 
+
+1. Refere https://docs.adonisjs.com/guides/auth/introduction 
+2. Add Auth middleware and silent auth to `kernel.ts`
