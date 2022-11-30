@@ -226,3 +226,11 @@ Route.resource("news", "ArticlesController").paramFor("news", "slug").as("news")
 #### Create slug 
 
 1. Created slug in the store method in ArticlesController.
+
+#### Models
+
+1. Keep the name of the model exactly same as the name of the table but in singular form.
+```
+node ace make:model Article
+```
+2. Article extends `BaseModel` which gives model the power of Lucid ORM.

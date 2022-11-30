@@ -1,10 +1,12 @@
 import Database from '@ioc:Adonis/Lucid/Database'
+import Article from 'App/Models/Article';
 import CreateArticleValidator from 'App/Validators/CreateArticleValidator'
 
 export default class ArticlesController {
 
     public async index({ view }) {
-        const articles = await Database.from('articles').select("*"); 
+        // const articles = await Database.from('articles').select("*"); 
+        const articles = await Article.all();
 
         // return articles
         return view.render('news/view', { articles }); //passing 2nd arguement of state as the database table name in {} 
@@ -33,25 +35,32 @@ export default class ArticlesController {
 
     public async show ({ params, view }){
         // const { slug } = params;
-        const article = await Database.from("articles").where("slug", params.slug).first();
+        // const article = await Database.from("articles").where("slug", params.slug).first();
+        const article = await Article.findBy("slug", params.slug)
         return view.render("news/show", {article})
     }
     public async edit({ view, params }){
-        const { slug } = params;
-        const article = await Database.from("articles").where("slug", slug).first();
+        // const { slug } = params;
+        // const article = await Database.from("articles").where("slug", slug).first();
+        const article = await Article.findBy("slug", params.slug)
         // return article;
         return view.render("news/edit", { article })
     }
 
     public async update ({request, response, params}){
         const payload = await request.validate(CreateArticleValidator );
+        // await Database.from("articles").where("slug", params.slug).update(payload)
         await Database.from("articles").where("slug", params.slug).update(payload)
         return response.redirect().back();
         // return "ddfef"
     }
     
     public async destroy({ params, response }) {
-        await Database.from("articles").where("slug", params.slug).delete();
-        return response.redirect().back();
+        // await Database.from("articles").where("slug", params.slug).delete();
+        const article = await Article.findBy("slug", params.slug);
+        if(article){
+            article.delete()
+            return response.redirect().back();
+        }
       }
 }
