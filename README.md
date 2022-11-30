@@ -222,4 +222,7 @@ Route.resource("news", "ArticlesController").apiOnly();
 ```
 Route.resource("news", "ArticlesController").paramFor("news", "slug").as("news");
 ```
-5. dd
+ 
+#### Create slug 
+
+1. Created slug in the store method in ArticlesController.
