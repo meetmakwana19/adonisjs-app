@@ -17,11 +17,11 @@
         @end
         @if(auth.isLoggedIn)
         <li class="nav-item">
-          <form action="{{route("auth.logout")}}" method="POST">
+          <form action="{{route("auth.logout")}}" method="POST" id="GFG">
             {{csrfField()}}
-            <button type="submit" class="nav-link d-flex align-items-center">
+            <a type="submit" class="nav-link d-flex align-items-center" onclick="myFunction()">
               Logout
-            </button>
+            </a>
           </form>
         </li>
         @else
