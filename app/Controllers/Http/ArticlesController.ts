@@ -22,14 +22,15 @@ export default class ArticlesController {
         const payload = await request.validate(CreateArticleValidator );
         // return request.body();
         
-        await Database.table("articles").insert({
-            // title: title,
-            // image: image,
-            // content: content,
-            // slug: "yoyo1",
-            ...payload,
-            slug: payload.title.replace(" ", "_") + +new Date()
-        })
+        // await Database.table("articles").insert({
+        //     // title: title,
+        //     // image: image,
+        //     // content: content,
+        //     // slug: "yoyo1",
+        //     ...payload,
+        //     slug: payload.title.replace(" ", "_") + +new Date()
+        // })
+        await Article.create(payload)
         return response.redirect().back()
     }
 
@@ -50,7 +51,9 @@ export default class ArticlesController {
     public async update ({request, response, params}){
         const payload = await request.validate(CreateArticleValidator );
         // await Database.from("articles").where("slug", params.slug).update(payload)
-        await Database.from("articles").where("slug", params.slug).update(payload)
+        // await Database.from("articles").where("slug", params.slug).update(payload)
+        await Article.query().where("slug", params.slug).update(payload)
+        
         return response.redirect().back();
         // return "ddfef"
     }

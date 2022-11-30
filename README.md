@@ -234,3 +234,9 @@ Route.resource("news", "ArticlesController").paramFor("news", "slug").as("news")
 node ace make:model Article
 ```
 2. Article extends `BaseModel` which gives model the power of Lucid ORM.
+
+#### Hooks 
+
+1. Hooks are the actions that you can perform against a model instance during a pre-defined life cycle event. Using hooks, you can encapsulate specific actions within your models vs. writing them everywhere inside your codebase.
+2. And just write a hook in model file.
+3. Benefit of using model is also  that  it automatically adds the timestamps 
